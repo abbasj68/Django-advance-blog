@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView,RedirectView
 from django.views.generic import ListView,DetailView,FormView,CreateView,UpdateView,DeleteView
+from django.http import HttpResponse
 from .models import Post
 from django.shortcuts import get_object_or_404
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 # Create your views here.
 
@@ -43,7 +48,8 @@ class RedirectToMaktab(RedirectView):
         print(post)
         return super().get_redirect_url(**args,**kwargs)
     
-class PostListView(LoginRequiredMixin,ListView):
+class PostListView(PermissionRequiredMixin,LoginRequiredMixin,ListView):
+    permission_required = 'blog.views_post'
     queryset = Post.objects.all()
     # model = Post
     context_object_name = 'posts'
@@ -53,8 +59,8 @@ class PostListView(LoginRequiredMixin,ListView):
     #     posts = Post.objects.filter(status = True)
     #     return posts     
     
-class PostDetailView(PermissionRequiredMixin,LoginRequiredMixin,DetailView):
-        model = Post
+class PostDetailView(LoginRequiredMixin,DetailView):
+    model = Post
 
 ''''
 class PostCreateView(FormView):
@@ -67,7 +73,7 @@ class PostCreateView(FormView):
         return super().form_valid(form)
 '''
 
-class PostCreateView(PermissionRequiredMixin,LoginRequiredMixin,CreateView):
+class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     # fields = ['author','title','content','status','category','published_date']
     form_class = PostForm
@@ -77,11 +83,12 @@ class PostCreateView(PermissionRequiredMixin,LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user 
         return super().form_valid(form)
     
-class PostEditView(PermissionRequiredMixin,LoginRequiredMixin,UpdateView):
+class PostEditView(LoginRequiredMixin,UpdateView):
     model = Post
     form_class = PostForm
     success_url = '/blog/post/'   
     
-class PostDeleteView(PermissionRequiredMixin,LoginRequiredMixin,DeleteView):
+class PostDeleteView(LoginRequiredMixin,DeleteView):
     model = Post
-    success_url = '/blog/post/'    
+    success_url = '/blog/post/'
+
