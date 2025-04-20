@@ -42,7 +42,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser,PermissionsMixin):
     '''
-    Custom Ueser Model for our app
+    Custom User Model for our app
     '''
     email = models.EmailField(max_length=255,unique=True)
     is_superuser = models.BooleanField(default=False)
