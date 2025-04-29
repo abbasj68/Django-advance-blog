@@ -23,6 +23,7 @@ def indexView(request):
     context = {"name":name}
     return render(request,'index.html',context)
 '''
+'''
 class IndexView(TemplateView):
     """
     a class based view to show index page 
@@ -34,11 +35,12 @@ class IndexView(TemplateView):
         context["name"] = "ali"
         context["Posts"] = Post.objects.all()
         return context
-    
+    '''
 '''FBV for redirect
 from django.shortcuts import redirect
 def redirectToMaktab(request):
     return redirect('https://maktabkhooned.com')
+'''
 '''
 class RedirectToMaktab(RedirectView):
     url = 'https://maktabkhooneh.com'
@@ -47,6 +49,7 @@ class RedirectToMaktab(RedirectView):
         post = get_object_or_404(Post, pk=kwargs['pk'])
         print(post)
         return super().get_redirect_url(**args,**kwargs)
+        '''
     
 class PostListView(PermissionRequiredMixin,LoginRequiredMixin,ListView):
     permission_required = 'blog.views_post'
