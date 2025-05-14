@@ -8,12 +8,13 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # registration
-    path('registrations/',views.RegistrationApiView.as_view(),name='registrations'),
+    path('registration/',views.RegistrationApiView.as_view(),name='registration'),
     
     path('test-email',views.TestEmailSend.as_view(),name='test-email'),
     # activate
-    
+    path('activation/confirm/<str:token>',views.ActivationApiView.as_view(),name='activation'),
     # resend activation
+    path('activation/resend/',views.ActivationResendApiView.as_view(),name='activation-resend'),
     
     # change password
     path('change-password/',views.changePasswordApiView.as_view(),name='change-password'),
