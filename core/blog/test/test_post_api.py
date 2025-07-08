@@ -3,7 +3,6 @@ from django.urls import reverse
 from accounts.models import User
 import pytest
 from datetime import datetime
-from rest_framework.authtoken.models import Token
 from blog.models import Category
 
 
