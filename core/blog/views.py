@@ -37,7 +37,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self,*args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["name"] = "ali"
+        context["name"] = "abbas"
         context["Posts"] = Post.objects.all()
         return context
     
@@ -57,7 +57,7 @@ class IndexView(TemplateView):
 #         """
 
 
-class PostListView(PermissionRequiredMixin, LoginRequiredMixin, ListView):
+class PostListView(ListView):
     permission_required = "blog.views_post"
     queryset = Post.objects.all()
     # model = Post

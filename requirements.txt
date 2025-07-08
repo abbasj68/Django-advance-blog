@@ -3,12 +3,14 @@ django >5.0,<5.2
 python-decouple
 pillow
 djangorestframework
+djangorestframework-simplejwt
 
 # third party modules
 markdown     
 django-filter
 drf-yasg[validation]
-rest_framework_simplejwt
+djangorestframework-simplejwt
+djoser
 
 
 # deployment modules
@@ -19,3 +21,5 @@ django-mail-templated
 # refactoring and test
 black
 flake8
+pytest
+pytest_django
