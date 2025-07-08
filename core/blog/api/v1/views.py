@@ -49,7 +49,7 @@ from .paginations import DefaultPagination
 #     """getting a list of posts and creating new posts"""
 #     permission_classes = [IsAuthenticated]
 #     serializer_class = PostSerializer
-    
+
 #     def get(self,request):
 #         """retrieving a list of posts"""
 #         posts = Post.objects.filter(status=True)
@@ -107,7 +107,7 @@ from .paginations import DefaultPagination
 class PostModelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
-    queryset = Post.objects.filter(status=True).order_by('-published_date')
+    queryset = Post.objects.filter(status=True).order_by("-published_date")
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = {
         "category": ["exact", "in"],

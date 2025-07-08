@@ -29,18 +29,21 @@ from django.contrib.auth.mixins import (
 #     return render(request,'index.html',context)
 # '''
 
+
 class IndexView(TemplateView):
     """
     a class based view to show index page
     """
-    template_name = 'index.html'
 
-    def get_context_data(self,*args, **kwargs):
+    template_name = "index.html"
+
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["name"] = "abbas"
         context["Posts"] = Post.objects.all()
         return context
-    
+
+
 # """FBV for redirect
 # from django.shortcuts import redirect
 # def redirectToMaktab(request):
@@ -78,7 +81,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 #     template_name = "contact.html"
 #     form_class = PostForm
 #     success_url = "/blog/post"
-    
+
 #     def form_valid(self, form):
 #         form.save()
 #         return super().form_valid(form)
