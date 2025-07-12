@@ -11,6 +11,7 @@ django-filter
 drf-yasg[validation]
 djangorestframework-simplejwt
 djoser
+django-cors-headers
 
 
 # deployment modules
@@ -23,3 +24,4 @@ black
 flake8
 pytest
 pytest_django
+Faker
